@@ -1,0 +1,12 @@
+# Introduction
+--------------
+
+. Implement Docker Compose
+--------------------------
+Docker Compose is an incredibly powerful tool that takes the complexity out of local development in Docker. 
+
+It makes local development easier and simpler. 
+
+Learning Docker Compose can help your organization solve pain points for Docker users and make developers more efficient and happier. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
