@@ -1,0 +1,66 @@
+# 1. Understanding Docker Compose
+---------------------------------
+
+. Compose in the Docker tool ecosystem
+--------------------------------------
+Docker tutorials, including this one, typically walk through a simple example of starting one or two Docker containers. 
+
+However, software systems out in the wild are rarely that simple. 
+
+A mature software system will usually have at least a few Dockerized services, each with specific, individual configurations. 
+
+There may be some shared third-party dependencies or some services may depend on each other, which means that they need to be initialized in a specific order. 
+
+In a microservice architecture, there may be hundreds of services to contend with. 
+
+The simple steps to follow for starting one or two containers become extremely tedious or even impossible for starting hundreds of containers. 
+
+That's where Docker Compose comes in. Docker Compose is an independent tool that comes standard with most downloadable Docker distributions. 
+
+Fundamentally, you can think of Docker Compose as simply a markdown language. 
+
+It provides scaffolding for software developers to specify their Docker configurations as code. 
+
+Using Docker Compose instead of manually configuring and initializing many individual Docker containers, developers can simplify the process down to running a single configuration file. 
+
+Docker Compose doesn't add any functionality to the Docker ecosystem, but it does make the existing functionality significantly easier to use. 
+
+This course is intended to clarify what Docker Compose is and is not and will provide detailed examples of how to leverage Compose in any Docker-based software system.
+
+. Docker Tutorial Example
+-------------------------
+
+		Container_1 -------------------- Container_2
+
+	. Production systems are typically more complex
+
+
+. Production System Considerations
+----------------------------------
+. Multiple systems
+
+. Microservices
+
+. Third-party dependencies
+
+
+. Docker Compose
+----------------
+Markdwon tool for developers to specify Docker configurations as code
+
+
+	. Docker Compose can document a system as a runnable configuration file.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
