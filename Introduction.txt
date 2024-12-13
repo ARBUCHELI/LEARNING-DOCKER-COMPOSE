@@ -10,3 +10,20 @@ It makes local development easier and simpler.
 Learning Docker Compose can help your organization solve pain points for Docker users and make developers more efficient and happier. 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+. What you should know
+----------------------
+. Familiarity with Docker
+	. Prior knowledge is required
+
+
+. This course covers Docker Compose, a specific tool in the Docker ecosystem
+
+
+Must-Have Knowledge			Nice-To-Have Knowledge
+-------------------			----------------------
+. Docker images				. Storage volumes
+
+. Docker containers			. Port mappings
+
+
