@@ -54,6 +54,75 @@ Markdwon tool for developers to specify Docker configurations as code
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+. Docker Compose basics
+-----------------------
+Understanding configuration as code is core to understanding Docker Compose. 
+
+Configuration means all of the settings that allow the system to run, such as where persistent data lives, how to access and send messages to other internal and external services, and what environment-specific values to use. 
+
+Most configuration as code tools, including Docker Compose, are declarative rather than procedural. 
+
+With Docker Compose, configuring a Docker environment involves executing a set of procedural steps in a specific order. 
+
+Each subsequent step relies on the previous step and there are some implicit assumptions about the state of your Docker environment baked in. There can be bugs if the state of the environment does not match those implicit assumptions. 
+
+For example, you may have a set of procedural steps written to build and run a Docker container. These steps will work the first time they are run, but on the second time around, they will not run as expected. This is because if the original container is already running, the run step will fail unless the old container is explicitly stopped first. 
+
+Declarative tools, like Docker Compose, allow you to specify the desired end result and will execute any steps to reach that result automatically. 
+
+In this example, the desired end result is to have a container running. 
+
+This means that no matter how many times you execute your Docker Compose configuration, it should produce the same result each time. 
+
+How it reaches that end result, including startup and cleanup steps, are only implementation details, and those are fully managed by Docker Compose under the hood. 
+
+In general, there are several other great advantages to configuration as code, too. A configuration file can be checked into version control, which makes it easy to revert to previous versions if the configuration ever breaks. 
+
+It's also self-documenting, so you never need to worry about trying to remember that one command you ran two months ago. 
+
+Finally, it makes it significantly easier to manage multiple Docker environments, each with slightly different configurations, like local development and your testing environment. 
+
+Each one can hae their own independent configuration file.
+
+
+. Configuration as Code
+-----------------------
+File that contains all of the settings that allow a system to run
+
+
+. Configuration Examples
+------------------------
+. Where persistent data lives
+
+. How to access or send messages to other services
+
+. Environment-specific settings
+
+
+	Procedural				Declarative
+	----------				-----------
+	. Series of ordered steps		. Specify end results
+
+	. Based on assumptions			. System will determine
+	about previous steps			which steps to execute
+
+	. Easy to introduce errors		. Produces the same result
+						each time
+
+
+				 Main Benefits
+				 -------------
+	
+	Version control		Self-documenting	Easy management
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	
+
+
+
+
 
 
 
