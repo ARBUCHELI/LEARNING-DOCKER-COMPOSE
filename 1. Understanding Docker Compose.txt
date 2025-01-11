@@ -118,7 +118,46 @@ File that contains all of the settings that allow a system to run
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Where to use Docker Compose
+-----------------------------
+
+* Docker Compose was designed for a single server.
+
+Designed For						Not Designed For
+------------						----------------
+. Local development					. Distributed systems
+
+. Staging server						Not tooling for running containers across multipe hosts
+
+. Continuous integration testing environment		. Complex production environments
+
+
+* Docker Compose doesn't have support for independantly scaling services, or any kind of autoscaling.  The following example can show this situation:
+
+* An Example Case Study
+-----------------------
+A company has two primary online applications:
+
+	. Storefront service expecting increased traffic
+
+	. Scheduler service has no additiona load
+
+In the case that the storefronte requires to increase the traffic due to a promotional sale, for example, the only way is to run Docker Compose on multiple hosts, and this will scale up
+the Scheduler at the same time, wasting resources.
+
+	* SCALING IN DOCKER COMPOSE IS ALL OR NOTHING
+
+	* DOCKER COMPOSE WAS DESIGNED FOR NONPRODUCTION ENVIRONMENTS
+
+	* TO SOLVE THE PROBLEMS IN PRODUCTION ENVIRONMENTS WE USE DEDICATED ORCHESTRATION TOOLS SUCH AS Docker Swarm OR Kubernetes
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 	
+
+
+ 	
 
 
 
