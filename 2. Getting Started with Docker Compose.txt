@@ -1,0 +1,113 @@
+2. Getting Started with Docker Compose
+--------------------------------------
+
+* Writing a Docker Compose configuration
+----------------------------------------
+
+* The first step to start using Docker Compose is to create a configuration file inside of the application directory.
+
+	docker-compose.yaml
+
+Y et
+A nother
+M arkup
+L anguage
+
+YAML is a standard syntax for data serialization.  
+
+	* [LOOKS KIND OF LIKE JSON]
+
+
+* docker-compose.yaml
+---------------------
+version: "3.9"
+
+services: --> THIS SPECIFIES ALL OF THE CONTAINERS, THE APPLICATION NEEDS TO RUN
+  storefront: --> INDENTATION IS IMPORTANT
+    build: . --> GIVES INSTRUCTIONS FOR HOW TO CREATE THE STOREFRONT DOCKER CONTAINER
+  database: 
+    image: "mysql" --> PROVIDED IN DOCKER HUB.  WE DON'T NEED TO CREATE IT OURSELVES
+
+
+	* DOCKER SERVICES CAN BE NAME WHATEVER WE WANT
+
+
+version: "3.9"
+
+services:
+  storefront: 
+    build: .
+  database: 
+    image: "mysql"
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
