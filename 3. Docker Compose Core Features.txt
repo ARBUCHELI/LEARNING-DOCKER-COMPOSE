@@ -1,0 +1,120 @@
+# 3. Docker Compose Core Features
+---------------------------------
+
+* Build arguments
+-----------------
+	ENVIRONMENT VARIABLES						BUILD ARGUMENTS
+	---------------------						---------------
+	. Accessible inside the running Docker container		. Accessible only at build time but not inside the container
+
+
+* Build Argument Use Cases
+--------------------------
+. Build tool versions
+. Cloud platform configurations
+. Example: AWS region
+
+
+* To specify a build argument in the docker-compose.yaml file:
+
+version: "3.9"
+
+services:
+  storefront: 
+    build: 
+      context: . --> WE NEED THIS
+      args: --> WE NEED THIS
+        - region=us-east-1
+        - alice=0
+    environment:
+      - runtime_env=dev
+  database: 
+    image: "mysql"
+    env_file:
+      - ./mysql/env_vars
+
+
+* Environment Variable Use Cases
+--------------------------------
+Specifying current runtime environments, such as dev or test.
+
+. Logger.log("logging from environment: {runtime_env}")
+
+. if(runtime_env == "test") disable_payments()
+
+
+version: "3.9"
+
+services:
+  storefront: 
+    build: 
+      context: .
+      args:
+        - region=us-east-1
+        - alice=0
+    environment: --> THIS IS HOW WE ADD ENVIRONMENT VARIABLES
+      - runtime_env=dev
+  database: 
+    image: "mysql"
+    env_file:
+      - ./mysql/env_vars
+
+
+	* USE ENVIRONMENT FILES IF THE LIST OF VARIABLES GETS TOO LONG
+
+
+version: "3.9"
+
+services:
+  storefront: 
+    build: 
+      context: .
+      args:
+        - region=us-east-1
+        - alice=0
+    environment:
+      - runtime_env=dev
+  database: 
+    image: "mysql"
+    env_file: --> THIS IS THE WAY TO DO THIS
+      - ./mysql/env_vars
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
