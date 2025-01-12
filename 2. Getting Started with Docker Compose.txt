@@ -43,6 +43,58 @@ services:
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Core Docker Compose commands
+------------------------------
+. up
+. down
+. stop
+. restart
+
+* Navigate to the directory with the docker-compose.yaml file
+
+	docker-compose up
+
+
+* docker-compose up
+-------------------
+. Build the image
+. Create the containers
+. Start the application
+
+
+	* YOU CAN ONLY PASS INDIVIDUAL CONTAINERS TO docker-compose up
+
+		docker-compose up storefront
+
+
+* docker-compose down
+---------------------
+. Stop all containers
+. Delete all containers and images
+. Remove all artifacts
+
+
+* docker-compose stop
+---------------------
+. Saves battery life
+. Frees up memory
+
+
+* docker-compose restart
+------------------------
+docker-compose stop; docker-compose start
+
+
+* docker-compose --help
+-----------------------
+For finding useful help
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 
 
