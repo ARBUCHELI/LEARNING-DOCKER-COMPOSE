@@ -82,6 +82,73 @@ services:
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Mounting volumes
+------------------
+
+* Volumes
+---------
+Persistent container storage
+
+
+* Target
+--------
+File directory path inside a container where volume data lives. Failing to provide this value, will result in a configuration error.
+
+
+	ADD A volumes OBJECT TO THE SERVICE THAT NEEDS TO ACCESS THE VOLUME
+
+
+docker-compose.yaml
+-------------------
+version: "3.9"
+
+services:
+  storefront: 
+    build: .
+  database: 
+    image: "mysql"
+    env_file:
+      - ./mysql/env_vars
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d:ro IN THIS EXAMPE: /docker-entrypoint-initdb.d --> TARGET PATH, ./mysql: --> THIS PART IS THE SOURCE, ro --> ACCESS MODE
+
+
+* Source
+--------
+File directory path on the host machine outside a container where volume data lives
+
+
+	BASH DIRECTORY SYNTAX
+	---------------------
+	./	-------> Current directory
+	../	-------> Parent directory
+	/	-------> Root directory
+
+
+	ACCESS MODES
+	------------
+	rw	Read-write	Default
+	ro	Read-only	Safer
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
 
 
 
