@@ -133,11 +133,55 @@ File directory path on the host machine outside a container where volume data li
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Named volumes
+---------------
+For easier lifecycle management
+
+To give the name a volume, follow the following syntax:
+
+docker-compose.yaml
+-------------------
+version: "3.9"
+
+services:
+  storefront: 
+    build: .
+  database: 
+    image: "mysql"
+    env_file:
+      - ./mysql/env_vars
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d:ro
+      - kineteco:/var/lib/mysql ---> HERE WE ARE USING THE VOLUME NAME.
+volumes:
+  kineteco: ---> HERE IS HOW TO NAME THE VOLUME.
+
+
+	ADVANTAGES OF USING NAMED VALUES WITH COMPOSE
+	---------------------------------------------
+	. docker-compose up
+	Copies volume data from old to new ---> THIS ENSURES THAT NOT DATA IS LOST
+
+
+	. docker-compose down --volumes
+	Automatically deletes named volumes
 
 
 
+* Without Named Values
+----------------------
+The computer can run out of memory.
 
 
+	Long Syntax			Short Syntax
+	-----------			------------
+	type: volume			kineteco: /var/lib/mysql:rw
+	source: kineteco
+	target: /var/lib/mysql
+	read_only: false
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	
 
