@@ -1,0 +1,97 @@
+# 4. DYNAMIC CONFIGURATIONS IN DOCKER COMPOSE
+---------------------------------------------
+
+* Named subsets of services
+---------------------------
+In a extensive organization, is faily common to see clusters of Docker containers that are frequently run together, but don't necessarily depend on each other.
+
+
+* Advantages of a Single Compose File
+-------------------------------------
+. Shared containers
+
+. Easier integration testing
+
+. Conceptually one system
+
+
+* THIS IS WHERE SERVICE PROFILES COME IN:
+
+	. Service profiles allow you to put a Docker service in one or more categories
+
+
+* In the next example, the both profiles, depend on the database, so we want the database to be included in both profiles
+
+
+	* THE DEFAULT PROFILE
+	---------------------
+	. A container with no profiles specified is included by default with every other service profile.
+
+	. Once a default profile is configured, docker compose commands will only apply to a service if its profile is explicitly enabled.
+
+	. That means that running docker-compose up will only run services that are part of the default profile.
+
+
+	* FOR ENABLING A NON DEFAULT PROFILE
+	------------------------------------
+	docker-compose --profile storefront_services up ---> THIS SYNTAX WORKS WITH ALL COMMANDS (up, down, stop, restart)
+
+
+docker-compose.yaml
+-------------------
+version: "3.9"
+
+services:
+  scheduler:
+    build: scheduler/.
+    ports:
+      - "81:80"
+    depends_on:
+      - database
+    profiles:
+      - scheduling_services ---> PROFILE CONFIGURED
+  storefront: 
+    build: storefront/.
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - database
+    profiles:
+      - storefront_services ---> PROFILE CONFIGURED
+  database: 
+    image: "mysql"
+    env_file:
+      - ./mysql/env_vars
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d:ro
+      - kineteco:/var/lib/mysql
+volumes:
+  kineteco: 
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
