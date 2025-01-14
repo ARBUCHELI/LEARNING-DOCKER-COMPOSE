@@ -183,6 +183,55 @@ The computer can run out of memory.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Exposing ports
+----------------
+Containerized services usually need to communicate with each other or with the external world, and developers usually want to access a containerized application via a local host.
+
+The way to do this is to especifically expose a port that maps from the host machine to the Docker container.
+
+There are more than 65000 tcp ports.
+
+	USING STANDARD DOCKER SYNTAX WITHOUT COMPOSE, YOU'LL HAVE TO ADD PORT MAPPINGS WHEN YOU RUN EACH CONTAINER. IT COULD BE DIFFICULT TO REMEMBER WHICH PORT SHOULD BE EXPOSED FOR
+	EACH DOCKERIZED SERVICE.
+
+	CANNOT EXPOSE THE SAME PORT TWICE ON THE SAME HOST MACHINE.
+
+	THIS MAKES DOCKER COMPOSE SPECIALLY CONVENIENT.
+
+
+docker-compose.yaml
+-------------------
+version: "3.9"
+
+services:
+  scheduler:
+    build: scheduler/.
+    ports:
+      - "81:80" ---> "PORT ON THE HOST MACHINE: PORT ON THE CONTAINER"
+  storefront: 
+    build: storefront/.
+    ports:
+      - "80:80" ---> "PORT ON THE HOST MACHINE: PORT ON THE CONTAINER"
+      - "443:443" ---> "FOR EXAMPLE FOR A MONITORING TOOL"
+  database: 
+    image: "mysql"
+    env_file:
+      - ./mysql/env_vars
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d:ro
+      - kineteco:/var/lib/mysql
+volumes:
+  kineteco: 
+
+
+	* EXPOSING PORTS IS ONE OF THE MOST COMMONLY USE CASES FOR DOCKER COMPOSE
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 	
 
 
