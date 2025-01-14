@@ -230,6 +230,80 @@ volumes:
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Enforcing start-up order
+--------------------------
+* Many common application architectures have service dependencies, meaning one service cannot operate without other.
+
+
+	* SYSTEM DEPENDENCIES
+	---------------------
+	
+	Storefront application ---------- Database
+
+	Step 1: Run database container.
+
+	Step 2: Run application container.
+
+
+docker-compose.yaml
+-------------------
+version: "3.9"
+
+services:
+  scheduler:
+    build: scheduler/.
+    ports:
+      - "81:80"
+  storefront: 
+    build: storefront/.
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on: ---> THIS IS HOW TO STABLISH A DEPENDENCY RELATIONSHIP
+      - database
+  database: 
+    image: "mysql"
+    env_file:
+      - ./mysql/env_vars
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d:ro
+      - kineteco:/var/lib/mysql
+volumes:
+  kineteco: 
+
+
+* docker-compose up
+-------------------
+Step 1: Start database.
+
+Step 2: Start storefront.
+
+
+* docker-compose down
+---------------------
+Step 1: Stop storefront.
+
+Step 2: Stop database.
+
+
+	* SERVICES CAN HAVE ANY NUMBER OF DEPENDENCIES AND MANY SERVICES CAN SHARE A SINGLE DEPENDENCY
+
+
+	* STARTING A DOCKER COMPOSE BY ITS SINGLE NAME, WILL ALSO START ALL ITS DEPENDENCIES AUTOMATICALLY
+
+		docker-compose up storefront
+
+
+	* UPTIME IS NEVER GUARANTEED
+
+
+	* TIGH COUPLING IS NOT RECOMMENDED IN A DISTRIBUITED SYSTEM
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 
 	
