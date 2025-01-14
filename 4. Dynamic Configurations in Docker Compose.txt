@@ -72,8 +72,52 @@ volumes:
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+* Multiple compose files
+------------------------
+
+* Use Cases
+-----------
+. Distinct desired behaviors that do not coincide.
+
+. Different environments (for example, testing vs. staging)
+
+. Different components of a single system (Use a single compose file instead)
 
 
+	* BY DEFAULT, DOCKER COMPOSE WILL READ TWO YAML FILES:
+		. docker-compose.yaml
+
+		. docker-compose.override.yaml
+
+
+	* MERGE RULES
+	-------------
+		Array fields: [original + override]
+
+		Single-value fields: preference to override
+
+
+	* OVERRIDE CAN BE A PARTIAL OR INCOMPLETE CONFIGURATION
+
+
+	* IT IS ALSO POSSIBLE TO HAVE MULTIPLE OVERRIDE FILES IN THE SAME REPOSITORY
+	
+		docker-compose.local.yaml
+
+		docker-compose.staging.yaml
+
+
+	* TO RUN CONFIGURATION FILE OVERRIDES:
+		docker-compose -f [primay file] -f [override file] [command]
+
+
+	$ docker-compose -f docker-compose.yaml -f docker-compose.local.yaml up
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		
 
 
 
